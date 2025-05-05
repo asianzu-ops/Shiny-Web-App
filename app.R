@@ -1,4 +1,5 @@
 
+
 #Load library
 
 library(shiny)
@@ -12,12 +13,20 @@ data <- read.csv("cleaned_grooming_data.csv")
 
 ui <- fluidPage(
   titlePanel("Chimpanzee Grooming Plot"),
+             
+  h3("How the GroomApp Works"),
+  
+  p("The GroomApp visualizes grooming interactions among chimpanzees. It allows for selecting a specific chimp ID to view either all grooming events 
+     involving that individual (as jitter points) or a summary of grooming frequency(shown with point sizes and colors based on whether they are groomer or groomed).
+     The app reads in a grooming dataset, filters and processes the data based on user inputs, and dynamically generates the appropriate plot."),
+  
+  
   
   selectInput("chimp_id", "Select Chimpanzee ID:",
               choices = unique(c(data$ID1, data$ID2))),
   
   radioButtons("plot_type", "Plot Type:",
-               choices = c("Raw Interactions" = "jitter",
+               choices = c("Interactions" = "jitter",
                            "Grooming Frequency" = "count"),
                selected = "jitter"),
   
